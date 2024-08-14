@@ -10,13 +10,15 @@ import SwiftUI
 struct WeatherView: View {
     @StateObject var wvm: WeatherViewModel
     @State var showXBtn: Bool = false
+    var defaultHeader = "Your Weather is here...!"
+    var errorHeader = "Sorry, something went wrong!"
     @Environment (\.unit) var unit
     @Environment (\.dismiss) var dismiss
 
     var body: some View {
         VStack {
             HStack {
-                Text("Your Weather is here...!")
+                Text(wvm.errorModel?.cod == nil ? defaultHeader : errorHeader)
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundColor(.orange)
@@ -51,7 +53,7 @@ struct WeatherView: View {
                         let lat = model?.coord?.lat ?? 0.0
                         let lon = model?.coord?.lon ?? 0.0
                         if wvm.errorModel?.cod == nil {
-                            HourlyView(dvm: HourlyViewModel(lat: lat, lon: lon))
+                            HourlyView(hvm: HourlyViewModel(lat: lat, lon: lon))
                         }
                     }
                 }

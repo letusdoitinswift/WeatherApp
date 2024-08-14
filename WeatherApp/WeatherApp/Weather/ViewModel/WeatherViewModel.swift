@@ -16,7 +16,7 @@ class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     // Declare the properties that will get populated
     @Published var weatherModel: WeatherModel?
     @Published var zipCodeModel: ZipCodeModel?
-    @Published var dailyModel: HourlyModel?
+    @Published var hourlyModel: HourlyModel?
     @Published var errorModel: ErrorModel?
 
     var search: String = "11801"
