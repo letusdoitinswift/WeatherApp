@@ -38,4 +38,15 @@ final class WeatherAppUITests: XCTestCase {
             }
         }
     }
+    
+    func testLocationPromoptAtLaunch() throws {
+        let app = XCUIApplication()
+        app.launch()
+        _ = addUIInterruptionMonitor(withDescription: "Location Permission Alert") { (alertElement) -> Bool in
+            for element in 0..<alertElement.buttons.count - 1 {
+                print("Button Label: \(alertElement.buttons.element(boundBy: element).label)")
+            }
+            return true
+        }
+    }
 }

@@ -12,6 +12,8 @@ struct WeatherAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.unit, UnitKey.defaultValue)
+                .environment(\.colorScheme, .dark)
         }
     }
 }

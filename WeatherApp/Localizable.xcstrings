@@ -1,0 +1,77 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@" : {
+
+    },
+    "%@%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$@"
+          }
+        }
+      }
+    },
+    "%lld%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld%2$@"
+          }
+        }
+      }
+    },
+    "Check Weather" : {
+
+    },
+    "Current Weather" : {
+
+    },
+    "Fetch Weather" : {
+
+    },
+    "H:%lld%@ L:%lld%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "H:%1$lld%2$@ L:%3$lld%4$@"
+          }
+        }
+      }
+    },
+    "Hourly forecast" : {
+
+    },
+    "search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look up weather for any city in the USA!"
+          }
+        }
+      }
+    },
+    "Search Weather" : {
+
+    },
+    "We are sorry, something went wrong. Please reenter the zip or city and try again!" : {
+
+    },
+    "Weather via city or a zip" : {
+
+    },
+    "X" : {
+
+    },
+    "Your Weather is here...!" : {
+
+    }
+  },
+  "version" : "1.0"
+}

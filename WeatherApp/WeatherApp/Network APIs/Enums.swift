@@ -12,4 +12,18 @@ enum NetworkError: Error {
     case BadResponse
     case BusinessError
     case TimedOut
+    case RequestedDataNotFound
+}
+
+/// For handling units.
+enum Unit: String {
+    case imperial = "°"
+    case metric = "°C"
+}
+
+/// For handling different types of requests.
+enum RequestType {
+    case hourly(Int)
+    case daily(Int)
+    case general
 }

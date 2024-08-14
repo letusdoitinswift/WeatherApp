@@ -1,54 +1,61 @@
 //
-//  Request.swift
+//  RequestProtocol.swift
 //  WeatherApp
 //
-//  Created by Manish Gupta on 8/9/24.
+//  Created by Manish Gupta on 8/10/24.
 //
 
 import Foundation
 
-/// Defines basic guidelines for a request object to follow
-protocol RequestProtocol {
-    associatedtype Model
-    func send<Model: Decodable>(_ request: URLRequest) async -> Model?
-    func send<Model: Decodable>(_ request: URLRequest) async -> [Model]?
-    var headers: [String: String] { get set }
-}
-
-extension RequestProtocol {
-    /// This is a generic request used when we want to fetch one object
-    /// - Parameter request: Parameter that is passed with the headers
-    /// - Returns: Fetches an object of data expected from the request
-    func send<Model: Decodable>(_ request: URLRequest) async -> Model? {
+struct Send<Model: Decodable> {
+    /// Send a request to fetch one object
+    func networkReq(_ request: URLRequest) async -> (Model?, ErrorModel?) {
+        var localData: Data?
+        let model: Model?
+        let errModel: ErrorModel?
         do {
-            let (data, resp) = try await URLSession.shared.data(for: request)
-            let model = try JSONDecoder().decode(Model.self, from: data)
-            return model
+            let (data, _) = try await URLSession.shared.data(for: request)
+            localData = data
+            model = try JSONDecoder().decode(Model.self, from: localData ?? Data())
+            return (model, nil)
         } catch {
-            //TODO: Handle errors
-#if DEBUG
-            print("This is what went wrong in an object request: \(error)")
-#endif
+            do {
+                errModel = try JSONDecoder().decode(ErrorModel.self, from: localData ?? Data())
+                print("Request which has the issues: \(Model.self) :\(request)")
+                print("Something went wrong in an object request: \(error)")
+                return (nil, errModel)
+            } catch {
+                print("Request which has the issues: \(Model.self) :\(request)")
+                print("Something went wrong in an object request: \(error)")
+            }
         }
-        
-        return nil
+        return (nil, nil)
     }
-    
-    ///  This is a generic request used when we want an array of data compared to one object
-    /// - Parameter request: Parameter that is passed with the headers
-    /// - Returns: Fetches array of data expected from the request
-    func send<Model: Decodable>(_ request: URLRequest) async -> [Model]? {
-        do {
-            let (data, resp) = try await URLSession.shared.data(for: request)
-            let model = try JSONDecoder().decode([Model].self, from: data)
-            return model
-        } catch {
-            //TODO: Handle errors
-#if DEBUG
-            print("This is what went wrong in an array of object request: \(error)")
-#endif
-        }
-        
-        return nil
+
+    /// This takes a closure does not use async / await
+    func networkReq(_ request: URLRequest,
+                 withCallBack: @escaping (Model?, ErrorModel?) -> Void) {
+        URLSession.shared.dataTask(with: request) { data, res, err in
+            let localData: Data
+            let model: Model?
+            let errModel: ErrorModel?
+            do {
+                if let data {
+                    localData = data
+                    model = try JSONDecoder().decode(Model.self, from: data)
+                    withCallBack(model, nil)
+                }
+            } catch {
+                do {
+                    errModel = try JSONDecoder().decode(ErrorModel.self, from: localData)
+                    print("Request which has the issues: \(Model.self) :\(request)")
+                    print("Something went wrong in an object request: \(error)")
+                    withCallBack(nil, errModel)
+                } catch {
+                    print("Request which has the issues: \(Model.self) :\(request)")
+                    print("Something went wrong in an object request: \(error)")
+                }
+            }
+        }.resume()
     }
 }

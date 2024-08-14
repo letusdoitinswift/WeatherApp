@@ -6,9 +6,14 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import WeatherApp
 
+
+@MainActor
 final class WeatherAppTests: XCTestCase {
+    
+    var wvm = WeatherViewModel()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -31,6 +36,31 @@ final class WeatherAppTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    @MainActor func test_prompts_for_location() {
+        let manager = wvm.clLocationManager
+        
+        XCTAssertNotNil(manager.authorizationStatus)
+        XCTAssertNotNil(manager.authorizationStatus)
+    }
+    
+    @MainActor func testCurrentLocation() {
+        let lat = wvm.clLocationManager.location?.coordinate.latitude
+        let lon = wvm.clLocationManager.location?.coordinate.longitude
+        
+        XCTAssertNotNil(lat)
+        XCTAssertNotNil(lon)
+    }
+    
+    func testForGeratingURLRequest() {
+        
+        let lat = wvm.clLocationManager.location?.coordinate.latitude
+        let lon = wvm.clLocationManager.location?.coordinate.longitude
+        wvm.fetchWeatherDetails(lat: lat ?? 0.0 , lon: lon ?? 0.0)
+        let urlRequest = Fetch.defaultWeather
+        
+        XCTAssertNotNil(urlRequest)
     }
 
 }
