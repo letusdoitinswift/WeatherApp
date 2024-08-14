@@ -51,8 +51,6 @@ class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private func fetchLocation(via manager: CLLocationManager) {
         let lat = manager.location?.coordinate.latitude ?? 0.0
         let lon = manager.location?.coordinate.longitude ?? 0.0
-        print("LAT (didStartMonitoringFor): \(lat)")
-        print("LON (didStartMonitoringFor): \(lon)")
         
         fetchWeatherDetails(lat: lat, lon: lon)
     }

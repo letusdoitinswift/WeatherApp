@@ -21,15 +21,12 @@ struct Send<Model: Decodable> {
         } catch {
             do {
                 errModel = try JSONDecoder().decode(ErrorModel.self, from: localData ?? Data())
-                print("Request which has the issues: \(Model.self) :\(request)")
-                print("Something went wrong in an object request: \(error)")
                 return (nil, errModel)
             } catch {
-                print("Request which has the issues: \(Model.self) :\(request)")
-                print("Something went wrong in an object request: \(error)")
+                let err = error as NSError
+                return (nil, ErrorModel(cod: "\(err.code)", message: "Something went bad \(err.domain)"))
             }
         }
-        return (nil, nil)
     }
 
     /// This takes a closure does not use async / await
@@ -48,12 +45,10 @@ struct Send<Model: Decodable> {
             } catch {
                 do {
                     errModel = try JSONDecoder().decode(ErrorModel.self, from: localData)
-                    print("Request which has the issues: \(Model.self) :\(request)")
-                    print("Something went wrong in an object request: \(error)")
                     withCallBack(nil, errModel)
                 } catch {
-                    print("Request which has the issues: \(Model.self) :\(request)")
-                    print("Something went wrong in an object request: \(error)")
+                    let err = error as NSError
+                    withCallBack(nil, ErrorModel(cod: "\(err.code)", message: "Something went bad \(err.domain)"))
                 }
             }
         }.resume()
