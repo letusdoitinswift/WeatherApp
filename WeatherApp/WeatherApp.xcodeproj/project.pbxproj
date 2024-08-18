@@ -15,6 +15,10 @@
 		13495F302C6BD44900F1E313 /* HourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13495F2F2C6BD44900F1E313 /* HourlyView.swift */; };
 		13707C012C6D57B7009162AD /* CityWeatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13707C002C6D57B7009162AD /* CityWeatherCardView.swift */; };
 		137D91292C6B70670022F6B5 /* HourlyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137D91282C6B70670022F6B5 /* HourlyViewModel.swift */; };
+		13AC7E132C719BD600BD8785 /* HourlyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC7E122C719BD600BD8785 /* HourlyModel.swift */; };
+		13AC7E152C719C1300BD8785 /* ZipCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC7E142C719C1300BD8785 /* ZipCodeModel.swift */; };
+		13AC7E172C719C3900BD8785 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC7E162C719C3900BD8785 /* ErrorModel.swift */; };
+		13AC7E192C71A04800BD8785 /* RoundedRectangleBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC7E182C71A04800BD8785 /* RoundedRectangleBGView.swift */; };
 		13B197912C670FB2009B5461 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B197902C670FB2009B5461 /* Request.swift */; };
 		13B197932C670FF7009B5461 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B197922C670FF7009B5461 /* Constants.swift */; };
 		13B197952C671152009B5461 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B197942C671152009B5461 /* Enums.swift */; };
@@ -65,6 +69,10 @@
 		13495F2F2C6BD44900F1E313 /* HourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyView.swift; sourceTree = "<group>"; };
 		13707C002C6D57B7009162AD /* CityWeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherCardView.swift; sourceTree = "<group>"; };
 		137D91282C6B70670022F6B5 /* HourlyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyViewModel.swift; sourceTree = "<group>"; };
+		13AC7E122C719BD600BD8785 /* HourlyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyModel.swift; sourceTree = "<group>"; };
+		13AC7E142C719C1300BD8785 /* ZipCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeModel.swift; sourceTree = "<group>"; };
+		13AC7E162C719C3900BD8785 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		13AC7E182C71A04800BD8785 /* RoundedRectangleBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleBGView.swift; sourceTree = "<group>"; };
 		13B197902C670FB2009B5461 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		13B197922C670FF7009B5461 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		13B197942C671152009B5461 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -141,6 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				13B1979A2C6717DA009B5461 /* WeatherModel.swift */,
+				13AC7E122C719BD600BD8785 /* HourlyModel.swift */,
+				13AC7E142C719C1300BD8785 /* ZipCodeModel.swift */,
+				13AC7E162C719C3900BD8785 /* ErrorModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +159,7 @@
 		13B197892C670609009B5461 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				13AC7E182C71A04800BD8785 /* RoundedRectangleBGView.swift */,
 				13707C002C6D57B7009162AD /* CityWeatherCardView.swift */,
 				13B197982C6717C6009B5461 /* WeatherView.swift */,
 				13D19DB42C6A53A2005BEEF0 /* WeatherListView.swift */,
@@ -390,18 +402,22 @@
 				13FC58392C66F92600D8CCE7 /* ContentView.swift in Sources */,
 				133C8EAD2C6CF034004E286F /* ErrorView.swift in Sources */,
 				13B197972C67179E009B5461 /* WeatherViewModel.swift in Sources */,
+				13AC7E172C719C3900BD8785 /* ErrorModel.swift in Sources */,
 				137D91292C6B70670022F6B5 /* HourlyViewModel.swift in Sources */,
 				13B197912C670FB2009B5461 /* Request.swift in Sources */,
 				13FC58372C66F92600D8CCE7 /* WeatherAppApp.swift in Sources */,
 				13D19DB72C6A65FD005BEEF0 /* HourlyForecastView.swift in Sources */,
+				13AC7E132C719BD600BD8785 /* HourlyModel.swift in Sources */,
 				13438FEC2C6A1E3500C823E9 /* TempCardView.swift in Sources */,
 				13B197932C670FF7009B5461 /* Constants.swift in Sources */,
+				13AC7E192C71A04800BD8785 /* RoundedRectangleBGView.swift in Sources */,
 				13BC7B2E2C69364900D6F653 /* Extensions.swift in Sources */,
 				13B197992C6717C6009B5461 /* WeatherView.swift in Sources */,
 				13B1979B2C6717DA009B5461 /* WeatherModel.swift in Sources */,
 				13B197952C671152009B5461 /* Enums.swift in Sources */,
 				13399C6D2C6E57BA0087067F /* DoneButtonView.swift in Sources */,
 				13D19DB52C6A53A2005BEEF0 /* WeatherListView.swift in Sources */,
+				13AC7E152C719C1300BD8785 /* ZipCodeModel.swift in Sources */,
 				1337F1D52C6F55EE008DD953 /* WeatherListViewModel.swift in Sources */,
 				13707C012C6D57B7009162AD /* CityWeatherCardView.swift in Sources */,
 				13399C6F2C6E5ADC0087067F /* ListSearchedCities.swift in Sources */,
