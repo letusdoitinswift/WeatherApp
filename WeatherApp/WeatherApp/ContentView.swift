@@ -18,7 +18,7 @@ struct ContentView: View {
                 }
             }.tabItem { Text("Current Weather") }
                 .tag(0)
-            WeatherListView(searchText: "11801", wvm: WeatherViewModel())
+            WeatherListView(wvm: WeatherViewModel())
                 .tabItem {
                 Text("Check Weather")
             }.tag(1)

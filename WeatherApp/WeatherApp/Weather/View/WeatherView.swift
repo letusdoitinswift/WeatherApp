@@ -13,7 +13,6 @@ struct WeatherView: View {
     var defaultHeader = "Your Weather is here...!"
     var errorHeader = "Sorry, something went wrong!"
     @Environment (\.unit) var unit
-    @Environment (\.dismiss) var dismiss
 
     var body: some View {
         VStack {
@@ -24,9 +23,7 @@ struct WeatherView: View {
                     .foregroundColor(.orange)
                 Spacer()
                 if showXBtn {
-                    Button("X") {
-                        dismiss()
-                    }
+                    DoneButtonView()
                 }
             }.padding()
             
@@ -35,20 +32,20 @@ struct WeatherView: View {
                     VStack {
                         ZStack {
                             let model = wvm.weatherModel
-                            TempCardView(temp: Int(model?.main?.temp ?? 0.0),
-                                         icon: model?.weather?.first?.icon ?? "",
-                                         description: model?.weather?.first?.description ?? "",
-                                         high: Int(model?.main?.temp_max ?? 0.0),
-                                         low: Int(model?.main?.temp_min ?? 0.0),
-                                         name: model?.name ?? "Austin",
-                                         unit: _unit).opacity(wvm.errorModel?.cod == nil ? 1.0 : 0.1)
-                            
-                            if wvm.errorModel?.cod != nil {
+                            if model != nil {
+                                TempCardView(temp: Int(model?.main?.temp ?? 0.0),
+                                             icon: model?.weather?.first?.icon ?? "",
+                                             description: model?.weather?.first?.description ?? "",
+                                             high: Int(model?.main?.temp_max ?? 0.0),
+                                             low: Int(model?.main?.temp_min ?? 0.0),
+                                             name: model?.name ?? "Austin",
+                                             unit: _unit).opacity(wvm.errorModel?.cod == nil ? 1.0 : 0.1)
+                            } else if wvm.errorModel?.cod != nil {
                                 ErrorView()
-                            } else {
-                                HeaderView().opacity(0.1)
                             }
+                            HeaderView()
                         }
+                        
                         let model = wvm.weatherModel
                         let lat = model?.coord?.lat ?? 0.0
                         let lon = model?.coord?.lon ?? 0.0

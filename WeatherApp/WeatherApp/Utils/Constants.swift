@@ -24,6 +24,19 @@ struct Fetch {
     static var imageURL: (String) -> URL = { str in
         return URL(string: "https://openweathermap.org/img/wn/\(str).png")!
     }
+    
+    struct Defaults {
+        static var keyForListOfWeatherCities = "DefaultsSearchKey"
+        static func fetcExistingWeatherDetails() -> Set<String>? {
+            do {
+                let data = UserDefaults.standard.data(forKey: Fetch.Defaults.keyForListOfWeatherCities) ?? Data()
+                return try JSONDecoder().decode(Set<String>.self, from: data)
+            } catch {
+                print("Something went wrong while performing fetcExistingWeatherDetails")
+            }
+            return nil
+        }
+    }
 }
 
 extension Fetch {
@@ -53,3 +66,4 @@ extension Fetch {
         return URL(string: urlString)!
     }
 }
+

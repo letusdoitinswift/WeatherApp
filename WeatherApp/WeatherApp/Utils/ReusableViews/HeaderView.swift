@@ -21,8 +21,9 @@ struct HeaderView: View {
             Text("\(DateTime.provideFinalDisplayDate())")
                 .font(.callout)
                 .fontWeight(.semibold)
-            
-        }.padding()
+        }
+        .opacity(0.1)
+        .padding()
     }
 }
 

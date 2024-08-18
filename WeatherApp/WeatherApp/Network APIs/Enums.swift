@@ -27,3 +27,44 @@ enum RequestType {
     case daily(Int)
     case general
 }
+
+// Gets the correct image for the background
+enum WeatherBGType: String {
+    case brokenClouds
+    case clearSky
+    case fewClouds
+    case lightRain
+    case moderateRain
+    case overcastClouds
+    case scatteredClouds
+    case thunderstorm
+    case none
+    
+    static func getStringFor(str: String) -> Self {
+        if str.contains("broken") {
+            return .brokenClouds
+        }
+        if str.contains("clear") {
+            return .clearSky
+        }
+        if str.contains("few") {
+            return .fewClouds
+        }
+        if str.contains("light") {
+            return .lightRain
+        }
+        if str.contains("moderate") {
+            return .moderateRain
+        }
+        if str.contains("overcast") {
+            return .overcastClouds
+        }
+        if str.contains("scattered") {
+            return .scatteredClouds
+        }
+        if str.contains("thunderstorm") {
+            return .thunderstorm
+        }
+        return .none
+    }
+}
