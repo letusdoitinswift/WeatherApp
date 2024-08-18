@@ -9,21 +9,33 @@ import CoreLocation
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var wvm: WeatherViewModel
-    var body: some View {
-        TabView {
-            ScrollView {
-                VStack {
-                    WeatherView(wvm: WeatherViewModel())
-                }
-            }.tabItem { Text("Current Weather") }
-                .tag(0)
-            WeatherListView(wvm: WeatherViewModel())
-                .tabItem {
-                Text("Check Weather")
-            }.tag(1)
-        }
-    }
+    @ObservedObject var wvm = WeatherViewModel()
+	var body: some View {
+		TabView {
+			ScrollView {
+				VStack {
+					WeatherView(wvm: wvm)
+				}
+			}.tabItem {
+				VStack {
+					Text("Current Weather")
+						.textCase(.uppercase)
+					Image(systemName: "cloud.sun")
+				}.padding([.bottom], 20)
+			}.tag(0)
+				.font(.headline)
+			WeatherListView(wvm: wvm)
+				.tabItem {
+					VStack {
+						Text("Search Weather")
+							.textCase(.uppercase)
+						Image(systemName: "magnifyingglass.circle.fill")
+					}.padding([.bottom], 20)
+				}.tag(1)
+				.font(.headline)
+		}
+		.environmentObject(wvm)
+	}
 }
 
 #Preview {

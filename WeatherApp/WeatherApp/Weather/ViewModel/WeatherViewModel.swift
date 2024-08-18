@@ -20,37 +20,39 @@ class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var errorModel: ErrorModel?
 
     var search: String = "11801"
-    var searchedStrings: Set<String> = Set<String>()
-    var savedModels: [(searchedText: String,
-                       weatherModel: WeatherModel,
-                       hourlyModel: HourlyModel)]?
+    var searchedStrings = Array<String>()
 
     func save(searched text: String) {
-        searchedStrings = Fetch.Defaults.fetcExistingWeatherDetails() ?? Set<String>()
-        self.searchedStrings.insert(text)
-        print("current strings: \(searchedStrings)")
-        let data = try? JSONEncoder().encode(searchedStrings)
-        UserDefaults.standard.setValue(data, forKey: Fetch.Defaults.keyForListOfWeatherCities)
+        searchedStrings = Fetch.Defaults.fetcExistingWeatherDetails() ?? []
+		if (searchedStrings.contains { $0.lowercased() == text.lowercased() } == false) {
+			self.searchedStrings.append(text)
+			print("current strings: \(searchedStrings)")
+			let data = try? JSONEncoder().encode(searchedStrings)
+			UserDefaults.standard.setValue(data, forKey: Fetch.Defaults.keyForListOfWeatherCities)
+		} else {
+			print("This string: \(text) was not saved to user defaults")
+		}
     }
 
     override init() {
         super.init()
         clLocationManager.delegate = self
-        Task {
-            let request = URLRequest(url: Fetch.defaultWeather)
-            (self.weatherModel, self.errorModel) = await Send<WeatherModel>().networkReq(request)
-        }
+		Task {
+			let request = URLRequest(url: searchedStrings.count != 0 ? URL(string: searchedStrings.last ?? Fetch.defaultCity)! : Fetch.defaultWeather)
+			(self.weatherModel, self.errorModel) = await Send<WeatherModel>().networkReq(request)
+		}
     }
 
     func fetchWeatherDetails(lat: Double, lon: Double) {
         let url = Fetch.using(lat: lat, lon: lon)
         let request = URLRequest(url: url)
-        Send<WeatherModel>().networkReq(request) { model, _ in
+        Send<WeatherModel>().networkReq(request) { model, err in
             DispatchQueue.main.async {
                 self.weatherModel = model
                 if let name = model?.name {
                     self.save(searched: name)
                 }
+				self.errorModel = err
             }
         }
     }
@@ -58,14 +60,14 @@ class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     private func fetchLocation(via manager: CLLocationManager) {
         let lat = manager.location?.coordinate.latitude ?? 0.0
         let lon = manager.location?.coordinate.longitude ?? 0.0
-        
+
         fetchWeatherDetails(lat: lat, lon: lon)
     }
 
     func fetchWeather(using zipOrCity: String) async  {
         let url = Fetch.using(zipOrCity: zipOrCity)
         let request = URLRequest(url: url)
-        
+
         switch zipOrCity.containsNumChars {
         case true:
             (self.zipCodeModel, self.errorModel) = await Send<ZipCodeModel>().networkReq(request)
@@ -92,7 +94,6 @@ extension WeatherViewModel {
     func locationManager(_ manager: CLLocationManager, 
                          didFailWithError error: any Error) throws {
         print("Failed to obtain location")
-        
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

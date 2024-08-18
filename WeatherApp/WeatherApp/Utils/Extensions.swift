@@ -29,3 +29,9 @@ extension EnvironmentValues {
 struct UnitKey: EnvironmentKey {
     static var defaultValue = Unit.imperial
 }
+
+extension String {
+	func performURLEncoding() -> Self {
+		return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+	}
+}
