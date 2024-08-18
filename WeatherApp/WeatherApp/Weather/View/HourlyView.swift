@@ -15,7 +15,7 @@ struct HourlyView: View {
                 .fontWeight(.ultraLight)
                 .textCase(.uppercase)
             ScrollView(.vertical) {
-                LazyVStack(alignment: .center, spacing: 10) {
+                VStack(alignment: .center, spacing: 10) {
                     ForEach(hvm.hourlyModel?.list ?? [], id: \.self) { each in
                         HourlyForecastView(model: each)
                     }

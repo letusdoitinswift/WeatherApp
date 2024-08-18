@@ -9,12 +9,13 @@ import Foundation
 
 class HourlyViewModel: ObservableObject {
     @Published var hourlyModel: HourlyModel?
+    var wvm: WeatherViewModel?
 
     init(lat: Double, lon: Double) {
         let url = Fetch.using(lat: lat, lon: lon, reqType: RequestType.daily(100))
         let request = URLRequest(url: url)
         Send<HourlyModel>().networkReq(request) { model, _ in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self.hourlyModel = model
             }
         }

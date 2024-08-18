@@ -30,6 +30,9 @@
     "Current Weather" : {
 
     },
+    "Done" : {
+
+    },
     "Fetch Weather" : {
 
     },
@@ -57,16 +60,13 @@
         }
       }
     },
-    "Search Weather" : {
+    "Search Weather)" : {
 
     },
     "We are sorry, something went wrong. Please reenter the zip or city and try again!" : {
 
     },
     "Weather via city or a zip" : {
-
-    },
-    "X" : {
 
     }
   },
