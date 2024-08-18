@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeatherView: View {
-    @StateObject var wvm: WeatherViewModel
+    @ObservedObject var wvm: WeatherViewModel
     @State var showXBtn: Bool = false
     var defaultHeader = "Your Weather is here...!"
     var errorHeader = "Sorry, something went wrong!"
@@ -32,18 +32,18 @@ struct WeatherView: View {
                     VStack {
                         ZStack {
                             let model = wvm.weatherModel
-                            if model != nil {
-                                TempCardView(temp: Int(model?.main?.temp ?? 0.0),
-                                             icon: model?.weather?.first?.icon ?? "",
-                                             description: model?.weather?.first?.description ?? "",
-                                             high: Int(model?.main?.temp_max ?? 0.0),
-                                             low: Int(model?.main?.temp_min ?? 0.0),
-                                             name: model?.name ?? "Austin",
-                                             unit: _unit).opacity(wvm.errorModel?.cod == nil ? 1.0 : 0.1)
-                            } else if wvm.errorModel?.cod != nil {
+							if model != nil {
+								TempCardView(temp: Int(model?.main?.temp ?? 0.0),
+											 icon: model?.weather?.first?.icon ?? "",
+											 description: model?.weather?.first?.description ?? "",
+											 high: Int(model?.main?.temp_max ?? 0.0),
+											 low: Int(model?.main?.temp_min ?? 0.0),
+											 name: model?.name ?? "Austin",
+											 unit: _unit)
+								HeaderView()
+							} else if wvm.errorModel?.cod != nil {
                                 ErrorView()
                             }
-                            HeaderView()
                         }
                         
                         let model = wvm.weatherModel
@@ -62,5 +62,5 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView(wvm: WeatherViewModel())
+	WeatherView(wvm: WeatherViewModel())
 }

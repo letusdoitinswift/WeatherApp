@@ -37,7 +37,7 @@ struct HourlyForecastView: View {
                 .frame(maxWidth: 50, maxHeight: 50)
             Text(desc)
                 .font(.caption)
-                .frame(maxWidth: 60, maxHeight: 50)
+                .frame(maxWidth: 100, maxHeight: 50)
         }
         .frame(maxWidth: 350, maxHeight: 100)
         .padding([.leading, .trailing], 20)

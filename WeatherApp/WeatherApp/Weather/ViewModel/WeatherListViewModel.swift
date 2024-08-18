@@ -12,12 +12,12 @@ class WeatherListViewModel: ObservableObject {
     let dispatchGroup = DispatchGroup()
     @Published var weatherModels: [WeatherModel]? = []
     @Published var errorModel: ErrorModel?
-    @Published var pageLoaded: Bool = false
+    @Published var pageLoaded: Bool = true
     
-    var fetchSearchedStrings: Set<String>? {
+    var fetchSearchedStrings: Array<String>? {
         let data = UserDefaults.standard.object(forKey: Fetch.Defaults.keyForListOfWeatherCities)
-        guard let strings: Set<String> =
-                try? JSONDecoder().decode(Set<String>.self,
+        guard let strings: Array<String> =
+                try? JSONDecoder().decode(Array<String>.self,
                                           from: data as? Data ?? Data()) else {
             return nil
         }
@@ -30,11 +30,13 @@ class WeatherListViewModel: ObservableObject {
         Task {
             for string in strings {
                 dispatchGroup.enter()
+				pageLoaded = false
                 let model: WeatherModel?
                 (model, self.errorModel) = await Send<WeatherModel>().fetchWeather(using: string)
                 if let model {
                     self.weatherModels?.append(model)
                 }
+				pageLoaded = true
                 dispatchGroup.leave()
                 
                 dispatchGroup.notify(queue: DispatchQueue.main) {

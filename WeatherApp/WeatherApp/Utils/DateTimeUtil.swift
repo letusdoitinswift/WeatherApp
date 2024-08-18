@@ -47,7 +47,6 @@ struct DateTime {
         dateFormat.timeStyle = .short
         dateFormat.dateFormat = "M/d ha"
         let date = Date(timeIntervalSince1970: TimeInterval(diff))
-        print(date)
         return dateFormat.string(from: date)
     }
     
@@ -56,7 +55,6 @@ struct DateTime {
         dateFormat.timeStyle = .short
         dateFormat.dateFormat = "M/d"
         let date = Date()
-        print(date)
         return dateFormat.string(from: date)
     }
     

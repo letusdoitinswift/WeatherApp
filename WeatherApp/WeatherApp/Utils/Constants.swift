@@ -27,10 +27,10 @@ struct Fetch {
     
     struct Defaults {
         static var keyForListOfWeatherCities = "DefaultsSearchKey"
-        static func fetcExistingWeatherDetails() -> Set<String>? {
+        static func fetcExistingWeatherDetails() -> Array<String>? {
             do {
                 let data = UserDefaults.standard.data(forKey: Fetch.Defaults.keyForListOfWeatherCities) ?? Data()
-                return try JSONDecoder().decode(Set<String>.self, from: data)
+                return try JSONDecoder().decode(Array<String>.self, from: data)
             } catch {
                 print("Something went wrong while performing fetcExistingWeatherDetails")
             }
@@ -43,10 +43,11 @@ extension Fetch {
     static func using(zipOrCity: String, reqType: RequestType = .general) -> URL {
         switch zipOrCity.containsNumChars {
         case true:
-            return URL(string: "https://api.openweathermap.org/geo/1.0/zip?units=\(unit)&zip=\(zipOrCity),us&appid=\(appid)")!
+			return URL(string: "https://api.openweathermap.org/geo/1.0/zip?units=\(unit)&zip=\(zipOrCity.performURLEncoding()),us&appid=\(appid)")!
         case false:
             print("Its a city: \(zipOrCity)")
-            return URL(string: "https://api.openweathermap.org/data/2.5/weather?units=\(unit)&APPID=\(appid)&q=\(zipOrCity),us")!
+			print("Its a city with encoding: \(zipOrCity.performURLEncoding())")
+			return URL(string: "https://api.openweathermap.org/data/2.5/weather?units=\(unit)&APPID=\(appid)&q=\(zipOrCity.performURLEncoding()),us")!
         }
     }
     
@@ -66,4 +67,3 @@ extension Fetch {
         return URL(string: urlString)!
     }
 }
-
