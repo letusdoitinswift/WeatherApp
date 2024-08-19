@@ -14,9 +14,10 @@ class HourlyViewModel: ObservableObject {
     init(lat: Double, lon: Double) {
         let url = Fetch.using(lat: lat, lon: lon, reqType: RequestType.daily(100))
         let request = URLRequest(url: url)
-        Send<HourlyModel>().networkReq(request) { model, _ in
+        Send<HourlyModel>().networkReq(request) { model, err in
             DispatchQueue.main.async { [self] in
                 self.hourlyModel = model
+				self.wvm?.errorModel = err
             }
         }
     }

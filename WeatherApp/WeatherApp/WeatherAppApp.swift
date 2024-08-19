@@ -13,6 +13,7 @@ struct WeatherAppApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.unit, UnitKey.defaultValue)
+				.background(Color.blue.opacity(0.2))
         }
     }
 }
