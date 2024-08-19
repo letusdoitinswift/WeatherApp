@@ -22,6 +22,7 @@ class WeatherViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     var search: String = "11801"
     var searchedStrings = Array<String>()
 
+	/// Adds the search string to the list of searched strings.
     func save(searched text: String) {
         searchedStrings = Fetch.Defaults.fetcExistingWeatherDetails() ?? []
 		if (searchedStrings.contains { $0.lowercased() == text.lowercased() } == false) {

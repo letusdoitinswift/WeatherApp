@@ -4,8 +4,10 @@
 <dict>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>launchBGColor</string>
 		<key>UIImageName</key>
-		<string>launchImage</string>
+		<string>launchImage-blue</string>
 	</dict>
 </dict>
 </plist>

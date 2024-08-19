@@ -15,7 +15,7 @@ struct RoundedRectangleBGView: View {
 			ZStack {
 				AsyncImage(url:
 							Fetch.imageURL(weatherModel?.weather?.first?.icon ?? "10p"))
-				.background(Color.orange.opacity(0.1))
+				.background(Color.blue.opacity(0.1))
 			}
 			VStack {
 				HStack {

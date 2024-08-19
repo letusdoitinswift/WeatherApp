@@ -30,6 +30,9 @@
     "Done" : {
 
     },
+    "Enter a city or zipcode" : {
+
+    },
     "Fetch Weather" : {
 
     },
@@ -61,9 +64,6 @@
 
     },
     "We are sorry, something went wrong. Please reenter the zip or city and try again!" : {
-
-    },
-    "Weather via city or a zip" : {
 
     }
   },

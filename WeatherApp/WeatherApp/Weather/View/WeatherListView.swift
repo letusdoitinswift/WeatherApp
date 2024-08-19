@@ -43,9 +43,9 @@ struct WeatherListView: View {
 							.disabled(searchText == "")
 							.font(.system(size: 20))
 							.padding()
-							.background(.orange)
+							.background(.blue)
 							.cornerRadius(10)
-							.foregroundColor(Color.accentColor)
+							.foregroundColor(Color.white)
 							.sheet(isPresented: $shouldPresentSheet) {
 								WeatherView(wvm: wvm, showXBtn: true)
 							}.padding()
@@ -68,11 +68,11 @@ struct WeatherListView: View {
 							}
 						}.navigationTitle("Search Weather")
 					}
-					.searchable(text: $searchText, prompt: "Weather via city or a zip")
+					.searchable(text: $searchText, prompt: "Enter a city or zipcode")
 				}
                 ProgressView(value: wlvm.pageLoaded == true ? 100 : 20, total: 100).tint(wlvm.pageLoaded == true ? Color.green.opacity(0.5) : .blue.opacity(0.5))
 					.progressViewStyle(.linear)
-            }.background(Color.orange.opacity(0.2))
+            }.background(Color.blue.opacity(0.2))
         }
 	}
 }
