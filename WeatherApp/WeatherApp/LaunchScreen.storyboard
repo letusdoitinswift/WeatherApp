@@ -40,8 +40,10 @@
                         <constraints>
                             <constraint firstItem="LOP-5s-7lz" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" constant="34" id="BH2-PG-reL"/>
                             <constraint firstItem="LOP-5s-7lz" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="K7v-t6-KL1"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="GJd-Yh-RWb" secondAttribute="trailing" constant="84" id="M5C-XQ-tNO"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="UA0-38-CyZ"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="108" id="c4P-xl-OV6"/>
+                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="84" id="gfl-VI-BjB"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="top" secondItem="LOP-5s-7lz" secondAttribute="top" constant="59" id="jHf-6e-ZCY"/>
                             <constraint firstItem="LOP-5s-7lz" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" constant="5" id="lCB-2d-AwT"/>
                         </constraints>

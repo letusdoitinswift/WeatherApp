@@ -34,7 +34,6 @@ struct WeatherListView: View {
     var body: some View {
         NavigationView {
             VStack {
-				if #available(iOS 16.0, *) {
 					ScrollView {
 						VStack {
 							Button("Fetch Weather") {
@@ -69,7 +68,6 @@ struct WeatherListView: View {
 						}.navigationTitle("Search Weather")
 					}
 					.searchable(text: $searchText, prompt: "Enter a city or zipcode")
-				}
                 ProgressView(value: wlvm.pageLoaded == true ? 100 : 20, total: 100).tint(wlvm.pageLoaded == true ? Color.green.opacity(0.5) : .blue.opacity(0.5))
 					.progressViewStyle(.linear)
             }.background(Color.blue.opacity(0.2))
