@@ -45,22 +45,27 @@ final class WeatherAppTests: XCTestCase {
         XCTAssertNotNil(manager.authorizationStatus)
     }
     
-    @MainActor func testCurrentLocation() {
-        let lat = wvm.clLocationManager.location?.coordinate.latitude
-        let lon = wvm.clLocationManager.location?.coordinate.longitude
-        
-        XCTAssertNotNil(lat)
-        XCTAssertNotNil(lon)
+    func testCurrentLocation() {
+		Task {
+			let locationManager = wvm.clLocationManager
+			let lat = locationManager.location?.coordinate.latitude
+			let lon = locationManager.location?.coordinate.longitude
+
+			XCTAssertNotNil(lat)
+			XCTAssertNotNil(lon)
+		}
     }
     
-    func testForGeratingURLRequest() {
-        
+    func testForGeneratingURLRequest() {
         let lat = wvm.clLocationManager.location?.coordinate.latitude
         let lon = wvm.clLocationManager.location?.coordinate.longitude
         wvm.fetchWeatherDetails(lat: lat ?? 0.0 , lon: lon ?? 0.0)
         let urlRequest = Fetch.defaultWeather
-        
+        print(urlRequest)
+		let testURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?units=imperial&APPID=019ba229d67bcb745c7686df9fd2036e&q=Austin,us")
         XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest, testURL)
     }
+	
 
 }

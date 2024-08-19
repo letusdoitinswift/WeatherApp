@@ -64,6 +64,7 @@ extension Fetch {
             urlString = "https://api.openweathermap.org/data/2.5/forecast?units=\(unit)&lat=\(lat)&lon=\(lon)&appid=\(appid)&cnt=\(num)"
         }
         
+		print(urlString)
         return URL(string: urlString)!
     }
 }

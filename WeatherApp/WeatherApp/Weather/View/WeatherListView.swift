@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WeatherListView: View {
 	@ObservedObject var wvm: WeatherViewModel
-    @State var searchText: String = ""
+    @State var searchText: String = "Plano"
     @State var shouldPresentSheet = false
     @State var wasTapped: Bool = false
     @StateObject var wlvm = WeatherListViewModel()

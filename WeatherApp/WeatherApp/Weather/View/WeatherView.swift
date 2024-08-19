@@ -10,7 +10,7 @@ import SwiftUI
 struct WeatherView: View {
 	@ObservedObject var wvm: WeatherViewModel
 	@State var showXBtn: Bool = false
-	var defaultHeader = "Your Weather is here...!"
+	var defaultHeader = "Weather"
 	var errorHeader = "Sorry, something went wrong!"
 	@Environment (\.unit) var unit
 	@Environment (\.dismiss) var dismiss
@@ -47,6 +47,7 @@ struct WeatherView: View {
 						}
 						
 					}.navigationTitle(wvm.errorModel?.cod == nil ? defaultHeader : errorHeader)
+						.navigationBarTitleDisplayMode(wvm.errorModel?.cod == nil ? .automatic : .inline)
 						.toolbar(content: {
 							if showXBtn {
 								Button("Done") {
