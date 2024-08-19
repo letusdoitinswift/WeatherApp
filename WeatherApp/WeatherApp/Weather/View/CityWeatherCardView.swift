@@ -18,7 +18,7 @@ struct CityWeatherCardView: View {
                 .background(Color.orange)
                 .opacity(0.29)
                 .background {
-                    LazyVStack {
+                    VStack {
                         RoundedRectangleBGView(weatherModel: $weatherModel)
                     }.padding(.bottom, 20).padding(.top, 10)
                     

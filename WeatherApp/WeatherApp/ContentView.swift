@@ -12,17 +12,14 @@ struct ContentView: View {
     @ObservedObject var wvm = WeatherViewModel()
 	var body: some View {
 		TabView {
-			ScrollView {
-				VStack {
-					WeatherView(wvm: wvm)
-				}
-			}.tabItem {
-				VStack {
-					Text("Current Weather")
-						.textCase(.uppercase)
-					Image(systemName: "cloud.sun")
-				}.padding([.bottom], 20)
-			}.tag(0)
+			WeatherView(wvm: wvm)
+				.tabItem {
+					VStack {
+						Text("Current Weather")
+							.textCase(.uppercase)
+						Image(systemName: "cloud.sun")
+					}.padding([.bottom], 20)
+				}.tag(0)
 				.font(.headline)
 			WeatherListView(wvm: wvm)
 				.tabItem {
