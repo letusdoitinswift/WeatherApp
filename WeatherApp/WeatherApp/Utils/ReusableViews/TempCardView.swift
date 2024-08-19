@@ -34,7 +34,7 @@ struct TempCardView: View {
                             let image = icon
                             AsyncImage(url: Fetch.imageURL(image))
                                 .frame(width: 40, height: 40)
-                                .background(Color.red)
+								.background(Color.blue)
                         }
                         Text(description)
                         Text("H:\(high)\(unit.rawValue) L:\(low)\(unit.rawValue)")

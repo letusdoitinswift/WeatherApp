@@ -56,7 +56,7 @@ struct WeatherView: View {
 						})
 				}
 				
-			}.background(Color.orange.opacity(0.1))
+			}.background(Color.blue.opacity(0.2))
 				.environmentObject(wvm)
 		}
 		

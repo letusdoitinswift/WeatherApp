@@ -15,7 +15,7 @@ struct DoneButtonView: View {
             .font(.system(size: 10))
             .foregroundStyle(Color.accentColor)
             .padding([.leading, .trailing, .bottom, .top], 7)
-            .background(.orange)
+            .background(.blue)
             .cornerRadius(4)
             .onTapGesture {
                 dismiss()

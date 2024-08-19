@@ -25,7 +25,7 @@ struct HourlyForecastView: View {
             let image = icon
             AsyncImage(url: Fetch.imageURL(image))
                 .frame(width: 40, height: 40)
-                .background(Color.red)
+                .background(Color.blue)
             Text("\(min)\(unit.rawValue)")
                 .font(.caption)
                 .frame(maxWidth: 50, maxHeight: 50)
